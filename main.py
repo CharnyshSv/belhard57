@@ -1,6 +1,1 @@
-print("hello")
-a = input ()
-
-print("hello word")
-print("Chernysh")
-print ("Svetlana")
+Режим вывода команд на экран (ECHO) включен.
