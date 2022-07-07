@@ -1,7 +1,8 @@
 # Калькулятор
-a: int = int(input("Введите число 1:"))
-b: int = int(input("Введите число 2:"))
-operation = input("Выберите операцию:")
+a: int = int(input("Введите число 1: "))
+b: int = int(input("Введите число 2: "))
+operation = input("Введите знак (+, -, *. /): ")
+
 
 if operation == "+":
     print(a+b)
