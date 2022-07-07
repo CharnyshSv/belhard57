@@ -1,4 +1,4 @@
-#
+# Вывести первые чисел кратные M и больше K
 #n: int = int(input("Enter number:"))
 m: int = int(input("Enter number:"))
 k: int = int(input("Enter number:"))
