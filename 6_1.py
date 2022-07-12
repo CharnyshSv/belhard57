@@ -11,4 +11,4 @@ while number > 0:
 
 print(numberb)
 
-print(bin(6))
+print(bin(2))
