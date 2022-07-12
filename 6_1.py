@@ -10,3 +10,5 @@ while number > 0:
     number = number // 2
 
 print(numberb)
+
+print(bin(6))
