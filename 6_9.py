@@ -5,23 +5,29 @@
 users = {
     1: {
         'fname': 'Alex',
-        'lname': 'Pukin',
+        'lname': 'Pupkin',
         'telnumb': '375291111111',
         'email': 'alex@test.com'
     },
     2: {
         'fname': 'ALena',
-        'lname': 'Pukina',
+        'lname': 'Pupkina',
         'telnumb': '375293333333',
         'email': ''
     },
     3: {
         'fname': 'Yan',
-        'lname': 'Pukin',
+        'lname': 'Pupkin',
         'telnumb': '375291111111'
     }
 }
 
+def get_users(users):
+    for user in users.values():
+        if 'email' not in user or not user['email']:
+            return user['fname'], user['lname']
+
+print(get_users(users))
 
 
 
