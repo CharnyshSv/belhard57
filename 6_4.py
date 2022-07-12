@@ -3,14 +3,11 @@
 # незаконно
 from typing import List
 
-lst: list[int | str | bool | None] = [1, 10, 'pp', True, 'hello', 'a', 3, False, None]
+lst = [1, 10, 'pp', True, 'hello', 'a', 3, False, None]
 
 def filter_terms(lst):
+    lst = [i for i in lst if isinstance(i, str)]
+    return lst
 
-    for i in lst:
-        if isinstance(i, str):
-            lst.append(i)
-        else:
-            lst.remove(i)
 print(filter_terms(lst))
 
