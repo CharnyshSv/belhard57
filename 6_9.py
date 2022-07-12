@@ -2,9 +2,26 @@
 # словарь с данными о пользователе (имя, фамилия, телефон, почта), вывести
 # имена тех, у кого не указана почта (нет ключа email или значение этого ключа -
 # пустая строка)
-dict = {
-    1: {name: 'Alex', age: 17, email: 'alex@test.com'},
-    2: {name: 'ALena', age: 18, email: ' '},
-    3: {name: 'Yan', age: 20, }
+users = {
+    1: {
+        'fname': 'Alex',
+        'lname': 'Pukin',
+        'telnumb': '375291111111',
+        'email': 'alex@test.com'
+    },
+    2: {
+        'fname': 'ALena',
+        'lname': 'Pukina',
+        'telnumb': '375293333333',
+        'email': ''
+    },
+    3: {
+        'fname': 'Yan',
+        'lname': 'Pukin',
+        'telnumb': '375291111111'
+    }
 }
+
+
+
 
