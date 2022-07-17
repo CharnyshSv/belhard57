@@ -2,11 +2,21 @@
 # функции reversed, а так же дополнительного списка и среза
 
 
-def reverse_lst(x):
-    return x[::-1]
+#def reverse_lst(x):
+#   return x[::-1]
 
-x =[1, 2, 3, 4, 5]
+#x =[1, 2, 3, 4, 5]
 
-y = reverse_lst(x)
+#y = reverse_lst(x)
 
-print(y)
+#print(y)
+
+# решение без среза ()
+# ~ тильда, формула -(i+1)
+
+def rev(lst: list) -> list:
+    for i in range(len(lst) // 2):
+        lst[i], lst[~i] = lst[~i], lst[i]
+    return lst
+
+print(rev([1, 2, 3, 4]))
