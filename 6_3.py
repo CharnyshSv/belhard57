@@ -14,3 +14,15 @@ numbers: list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 n: int = int(input("enter number: "))
 
 print(shift(numbers, n))
+
+# можно упростить:
+
+def shift_1(numbers: list, n: int) -> list:
+    if abs(n) > len(numbers):
+        n -= (n // len(numbers)) * len(numbers)
+    numbers = numbers[n:] + numbers[:n]
+    return numbers
+
+numbers: list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#n: int = int(input("enter number: "))
+#print(shift_1(numbers, n))
