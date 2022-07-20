@@ -1,9 +1,11 @@
 # Вывести в порядке возрастания цифры, входящие в десятичную запись натурального числа N.
-N: int = int(input('Введите N: '))
+N = int(input('Введите N: '))
 
-while N > 0:
 
-    list = list.append(str(N % 10))
-    N = N // 2
+def sortedd_numbers(N):
+    numbers = str(N)
+    numbers = "".join(sorted(numbers))
+    return numbers
 
+print(sortedd_numbers(N))
 
