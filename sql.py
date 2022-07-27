@@ -1,5 +1,7 @@
 import sqlite3
 
+#https://sqlitestudio.pl/
+
 conn = sqlite3.connect("db.db")
 cur = conn.cursor()
 cur.execute("""
