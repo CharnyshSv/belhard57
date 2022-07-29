@@ -35,3 +35,6 @@ class Article(Base):
 
 class UserArticle(Base):
     __tablename__: str = "user_articles"
+    id = Column(SmallInteger, prymary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="NO ACTION"), nullable=False)
+    article_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
