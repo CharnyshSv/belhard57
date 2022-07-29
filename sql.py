@@ -1,8 +1,8 @@
-import sqlite3
+import psycopg2
 
 #https://sqlitestudio.pl/
 
-conn = sqlite3.connect("db.db")
+conn = psycopg2.connect("db.db")
 cur = conn.cursor()
 cur.execute("""
     CREATE TABLE if NOT EXISTS categories(
