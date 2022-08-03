@@ -45,7 +45,7 @@ class CRUDCategory(object):
             categories = session.execute(
                 select(Category)
             )
-        return [CategoryInDBSchema(category[0].__dict__) for category in categories]
+        return [CategoryInDBSchema(**category[0].__dict__) for category in categories]
 
     @staticmethod
     @create_session
