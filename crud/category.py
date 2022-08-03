@@ -5,13 +5,14 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
 from models import create_session, Category, Article
+from schemas import CategoryInDBSchema, CategorySchema
 
 class CRUDCategory(object):
 
     @staticmethod
     @create_session
-    def add(name: str, parent_id: int, session: Session = None) -> Optional[Category]:
-        category = Category(name=name, parent_id=parent_id)
+    def add(category: CategorySchema, session: Session = None) -> Optional[CategoryInDBSchema]:
+        category = Category(**category.dict())
         session.add(category)
         try:
             session.commit()
@@ -19,17 +20,17 @@ class CRUDCategory(object):
             pass
         else:
             session.refresh(category)
-            return category
+            return CategoryInDBSchema(**category.__dict__)
 
     @staticmethod
     @create_session
-    def get(category_id: int, session: Session = None) -> Optional[Category]:
+    def get(category_id: int, session: Session = None) -> Optional[CategoryInDBSchema]:
         category = session.execute(
           select(Category).where(Category.id == category_id)
         )
         category = category.first()
         if category:
-            return category[0]
+            return CategoryInDBSchema(**category[0].__dict__)
 
     @staticmethod
     @create_session
