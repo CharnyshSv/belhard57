@@ -59,18 +59,13 @@ class CRUDCategory(object):
     @staticmethod
     @create_session
     def update(
-            category_id: int,
-            name: str = None,
-            parent_id: int = None,
+            category: CategoryInDBSchema,
             session: Session = None
     ) -> bool:
         session.execute(
             update(Category)
-            .where(Category.id == category_id)
-            .values(
-                name=name if name else Category.name,
-                parent_id=parent_id if parent_id else Category.parent_id
-            )
+            .where(Category.id == category.id)
+            .values(**category.dict())
         )
         try:
             session.commit()
@@ -81,7 +76,7 @@ class CRUDCategory(object):
 
     @staticmethod
     @create_session
-    def get_articles(category_id: int, session: Session = None) -> List[Tuple[Category,Article]]:
+    def get_articles(category_id: int, session: Session = None) -> list[tuple[Category,Article]]:
         response = session.execute(
             select(Category, Article)
             .join(Article. Category.id == Article.category_id)
