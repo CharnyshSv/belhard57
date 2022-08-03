@@ -45,4 +45,4 @@ class ArticleComment(Base):
     id = Column(Integer, ForeignKey("user.id", ondelate="CASCADE"), nullable=False)
     article_id = Column(Integer, ForeignKey("article.id", ondelate="CASCADE"), nullable=False)
     comment = Column(VARCHAR(140), nullable=False)
-    date_create = Column(TIMESTAMP, default=datatime.utcnow())
+    date_create = Column(TIMESTAMP, default=datetime.utcnow())
