@@ -34,7 +34,7 @@ class CRUDCategory(object):
 
     @staticmethod
     @create_session
-    def get_all(parent_id: int = None, session: Session = None) -> list[Category]:
+    def get_all(parent_id: int = None, session: Session = None) -> list[CategoryInDBSchema]:
         if parent_id:
             categories = session.execute(
                 select(Category)
@@ -45,7 +45,7 @@ class CRUDCategory(object):
             categories = session.execute(
                 select(Category)
             )
-        return [category[0] for category in categories]
+        return [CategoryInDBSchema(category[0].__dict__) for category in categories]
 
     @staticmethod
     @create_session
