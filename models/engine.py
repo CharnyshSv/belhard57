@@ -9,4 +9,4 @@ def create_session(func):
     def wrapper(**kwargs):
         with Session() as session:
             return func(**kwargs, session=session)
-    return wrapper()
+    return wrapper
