@@ -1,17 +1,17 @@
 from typing import Optional
 
 from sqlalchemy import select, update, delete, or_, and_
-from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import create_session, Category, Article
+from models import create_async_session, Category, Article
 from schemas import CategoryInDBSchema, CategorySchema
 
 class CRUDCategory(object):
 
     @staticmethod
-    @create_session
-    def add(category: CategorySchema, session: Session = None) -> Optional[CategoryInDBSchema]:
+    @create_async_session
+    async def add(category: CategorySchema, session: AsyncSession = None) -> Optional[CategoryInDBSchema]:
         category = Category(**category.dict())
         session.add(category)
         try:
@@ -23,8 +23,8 @@ class CRUDCategory(object):
             return CategoryInDBSchema(**category.__dict__)
 
     @staticmethod
-    @create_session
-    def get(category_id: int, session: Session = None) -> Optional[CategoryInDBSchema]:
+    @create_async_session
+    async def get(category_id: int, session: AsyncSession = None) -> Optional[CategoryInDBSchema]:
         category = session.execute(
           select(Category).where(Category.id == category_id)
         )
@@ -33,8 +33,8 @@ class CRUDCategory(object):
             return CategoryInDBSchema(**category[0].__dict__)
 
     @staticmethod
-    @create_session
-    def get_all(parent_id: int = None, session: Session = None) -> list[CategoryInDBSchema]:
+    @create_async_session
+    async def get_all(parent_id: int = None, session: AsyncSession = None) -> list[CategoryInDBSchema]:
         if parent_id:
             categories = session.execute(
                 select(Category)
@@ -48,8 +48,8 @@ class CRUDCategory(object):
         return [CategoryInDBSchema(**category[0].__dict__) for category in categories]
 
     @staticmethod
-    @create_session
-    def delete(category_id: int, session: Session = None) -> None:
+    @create_async_session
+    async def delete(category_id: int, session: AsyncSession = None) -> None:
         categories = session.execute(
             delete(Category)
                 .where(Category.id == category_id)
@@ -57,10 +57,10 @@ class CRUDCategory(object):
         session.commit()
 
     @staticmethod
-    @create_session
-    def update(
+    @create_async_session
+    async def update(
             category: CategoryInDBSchema,
-            session: Session = None
+            session: AsyncSession = None
     ) -> bool:
         session.execute(
             update(Category)
@@ -75,8 +75,8 @@ class CRUDCategory(object):
             return True
 
     @staticmethod
-    @create_session
-    def get_articles(category_id: int, session: Session = None) -> list[tuple[Category,Article]]:
+    @create_async_session
+    async def get_articles(category_id: int, session: AsyncSession = None) -> list[tuple[Category,Article]]:
         response = session.execute(
             select(Category, Article)
             .join(Article. Category.id == Article.category_id)

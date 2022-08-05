@@ -19,3 +19,8 @@ def create_table(cur=None, conn=None):
 
 create_table()
 
+#14 занятие
+def create_async_session(func):
+    async def wrapper(**kwargs):
+        async with AsyncSession(bind=async_engine)# дописать
+
